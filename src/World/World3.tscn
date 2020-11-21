@@ -1,0 +1,369 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://assets/World/Scenes/Ambient2.png" type="Texture" id=1]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/World/Scenes/Ambient2_background.png" type="Texture" id=3]
+[ext_resource path="res://src/Overlap/BackgroundCollision.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Effects/Scene_transition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/World/Scenes/Mountains.png" type="Texture" id=6]
+[ext_resource path="res://assets/Enemies/Boss/Idle.png" type="Texture" id=7]
+[ext_resource path="res://src/NPC/NPC.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/dialogs/Resources/World3.tres" type="Resource" id=9]
+[ext_resource path="res://assets/Sound and Music/Songs/hangar_complex.ogg" type="AudioStream" id=10]
+[ext_resource path="res://src/Sound/WorldMusic.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/Items/Help.png" type="Texture" id=12]
+[ext_resource path="res://src/UI/Days.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/Items/World3/Paper.png" type="Texture" id=14]
+[ext_resource path="res://src/Items/Cactus.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/Items/World3/Camp.png" type="Texture" id=16]
+[ext_resource path="res://assets/Items/World3/Cactus.png" type="Texture" id=17]
+[ext_resource path="res://src/Items/Items.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/Items/World3/Panel.png" type="Texture" id=19]
+[ext_resource path="res://src/Enemies/Zapper.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/Items/World3/Box.png" type="Texture" id=21]
+[ext_resource path="res://src/Overlap/Dialog_hurtbox.tscn" type="PackedScene" id=22]
+[ext_resource path="res://assets/Items/World3/Grass2.png" type="Texture" id=23]
+[ext_resource path="res://src/UI/Pause Menu.tscn" type="PackedScene" id=24]
+[ext_resource path="res://addons/dialogs/Resources/LOVR.tres" type="Resource" id=25]
+[ext_resource path="res://src/UI/Key_move.tscn" type="PackedScene" id=26]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 34, 44 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 44, 34, 44 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 88, 34, 44 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 132, 34, 44 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 3.92813
+height = 20.9047
+
+[sub_resource type="CapsuleShape2D" id=8]
+height = 28.2541
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 12.2, 16.1423 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 8.72699, 25.3449 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 13.4252, 74.0842 )
+
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 11.6863
+height = 20.042
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 10, 40.8021 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 17.3671, 34.9769 )
+
+[node name="World3" type="Node2D"]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 9, 160.5 )
+collision_mask = 33
+
+[node name="AnimationTree" parent="YSort/Player" index="2"]
+parameters/playback = SubResource( 1 )
+
+[node name="NPC" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 216.449, 126.416 )
+label_position = Vector2( 170, 120 )
+dialog_resource = ExtResource( 25 )
+
+[node name="AnimatedSprite" parent="YSort/NPC" index="1"]
+frames = SubResource( 6 )
+playing = true
+
+[node name="CollisionShape2D" parent="YSort/NPC" index="2"]
+position = Vector2( -0.717262, -4.0387 )
+
+[node name="Hurtbox" parent="YSort/NPC" index="3"]
+position = Vector2( 0.880127, 0 )
+
+[node name="Items" type="YSort" parent="YSort"]
+
+[node name="Help" type="Sprite" parent="YSort/Items"]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 57.1526, 152.786 )
+z_index = -1
+texture = ExtResource( 12 )
+
+[node name="Paper" type="Sprite" parent="YSort/Items"]
+position = Vector2( 196.929, 117.992 )
+texture = ExtResource( 14 )
+
+[node name="Item" parent="YSort/Items" instance=ExtResource( 18 )]
+position = Vector2( 118.971, 114.542 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 0
+
+[node name="Sprite" parent="YSort/Items/Item" index="0"]
+position = Vector2( -1.23604, 5.82703 )
+texture = ExtResource( 16 )
+offset = Vector2( 0, -10 )
+
+[node name="CollisionShape2D" parent="YSort/Items/Item" index="1"]
+position = Vector2( 8.49009, 5.88104 )
+shape = SubResource( 7 )
+
+[node name="Cactus" parent="YSort/Items" instance=ExtResource( 15 )]
+position = Vector2( 51.3366, 112.868 )
+z_index = -1
+
+[node name="Sprite" parent="YSort/Items/Cactus" index="0"]
+texture = ExtResource( 17 )
+
+[node name="CollisionShape2D" parent="YSort/Items/Cactus" index="1"]
+position = Vector2( 4.00452, 2.33597 )
+shape = SubResource( 8 )
+
+[node name="Zapper2" parent="YSort/Items" instance=ExtResource( 20 )]
+position = Vector2( 91.1502, 126.726 )
+
+[node name="Sprite" parent="YSort/Items/Zapper2" index="0"]
+flip_h = true
+
+[node name="Shadow" parent="YSort/Items/Zapper2" index="1"]
+offset = Vector2( -1.5, 0 )
+
+[node name="CollisionShape2D" parent="YSort/Items/Zapper2" index="2"]
+position = Vector2( -2, -6.94488 )
+
+[node name="Zapper3" parent="YSort/Items" instance=ExtResource( 20 )]
+position = Vector2( 164.567, 126.352 )
+
+[node name="Sprite" parent="YSort/Items/Zapper3" index="0"]
+flip_h = true
+
+[node name="Shadow" parent="YSort/Items/Zapper3" index="1"]
+offset = Vector2( -1.5, 0 )
+
+[node name="CollisionShape2D" parent="YSort/Items/Zapper3" index="2"]
+position = Vector2( -2, -6.94488 )
+
+[node name="Item2" parent="YSort/Items" instance=ExtResource( 18 )]
+position = Vector2( 190.246, 162.77 )
+
+[node name="Sprite" parent="YSort/Items/Item2" index="0"]
+texture = ExtResource( 19 )
+
+[node name="CollisionShape2D" parent="YSort/Items/Item2" index="1"]
+position = Vector2( 7.41624, 2.38379 )
+shape = SubResource( 9 )
+
+[node name="Item3" parent="YSort/Items" instance=ExtResource( 18 )]
+position = Vector2( 271.287, 124.396 )
+z_index = 0
+
+[node name="Sprite" parent="YSort/Items/Item3" index="0"]
+texture = ExtResource( 21 )
+
+[node name="CollisionShape2D" parent="YSort/Items/Item3" index="1"]
+position = Vector2( 7.30426, -2.37289 )
+shape = SubResource( 10 )
+
+[node name="Background" type="YSort" parent="YSort"]
+
+[node name="Sprite" type="Sprite" parent="YSort/Background"]
+position = Vector2( 164.894, 98.8127 )
+scale = Vector2( 0.710942, 0.710942 )
+z_index = -1
+texture = ExtResource( 1 )
+
+[node name="Ambient2_background" type="Sprite" parent="YSort/Background"]
+position = Vector2( 193.157, 44.096 )
+scale = Vector2( 0.615738, 0.615738 )
+z_index = -2
+texture = ExtResource( 3 )
+
+[node name="Sprite3" type="Sprite" parent="YSort/Background"]
+position = Vector2( 164.887, 49.0661 )
+scale = Vector2( 3.20657, 3.20657 )
+z_index = -2
+texture = ExtResource( 6 )
+
+[node name="Colissions Background" type="Node" parent="."]
+
+[node name="BackgroundCollision" parent="Colissions Background" instance=ExtResource( 4 )]
+position = Vector2( 182.639, 77.1252 )
+
+[node name="BackgroundCollision7" parent="Colissions Background" instance=ExtResource( 4 )]
+position = Vector2( 182.639, 77.1252 )
+
+[node name="CollisionShape2D" parent="Colissions Background/BackgroundCollision7" index="0"]
+position = Vector2( -195.763, 112.208 )
+shape = SubResource( 11 )
+
+[node name="BackgroundCollision6" parent="Colissions Background" instance=ExtResource( 4 )]
+position = Vector2( 182.639, 77.1252 )
+
+[node name="CollisionShape2D" parent="Colissions Background/BackgroundCollision6" index="0"]
+position = Vector2( -46.1546, 154.662 )
+
+[node name="BackgroundCollision4" parent="Colissions Background" instance=ExtResource( 4 )]
+position = Vector2( 184.865, 84.2937 )
+
+[node name="CollisionShape2D" parent="Colissions Background/BackgroundCollision4" index="0"]
+position = Vector2( 111.172, 20.8087 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="BackgroundCollision5" parent="Colissions Background" instance=ExtResource( 4 )]
+position = Vector2( 118.938, 82.512 )
+
+[node name="CollisionShape2D" parent="Colissions Background/BackgroundCollision5" index="0"]
+position = Vector2( 126.666, 23.9269 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="BackgroundCollision3" parent="Colissions Background" instance=ExtResource( 4 )]
+position = Vector2( 184.865, 84.2937 )
+
+[node name="CollisionShape2D" parent="Colissions Background/BackgroundCollision3" index="0"]
+position = Vector2( -188.374, 27.4905 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="BackgroundCollision2" parent="Colissions Background" instance=ExtResource( 4 )]
+position = Vector2( 184.865, 84.2937 )
+
+[node name="CollisionShape2D" parent="Colissions Background/BackgroundCollision2" index="0"]
+position = Vector2( -23.4969, 24.5906 )
+rotation = 1.5708
+shape = SubResource( 12 )
+
+[node name="Scene_transition" parent="." instance=ExtResource( 5 )]
+position = Vector2( 329.729, 152.56 )
+scene = "res://src/World/World4.tscn"
+
+[node name="CollisionShape2D" parent="Scene_transition" index="0"]
+shape = SubResource( 13 )
+
+[node name="WorldMusic" parent="." instance=ExtResource( 11 )]
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="Days" parent="." instance=ExtResource( 13 )]
+margin_left = -5.699
+margin_top = 8.982
+margin_right = -5.699
+margin_bottom = 8.982
+
+[node name="Label2" parent="Days" index="1"]
+margin_left = 16.9603
+margin_right = 80.9602
+text = "10"
+
+[node name="Dialog_hurtbox" parent="." instance=ExtResource( 22 )]
+position = Vector2( 96.2171, 145.216 )
+label_position = Vector2( 140, 120 )
+dialog_resource = ExtResource( 9 )
+
+[node name="CollisionShape2D" parent="Dialog_hurtbox" index="0"]
+shape = SubResource( 14 )
+
+[node name="Pause Menu" parent="." instance=ExtResource( 24 )]
+
+[node name="Grass8" type="Sprite" parent="."]
+position = Vector2( 96.7105, 168.345 )
+z_index = -1
+texture = ExtResource( 23 )
+hframes = 3
+
+[node name="Grass2" type="Sprite" parent="."]
+position = Vector2( 29.0527, 135.464 )
+z_index = -1
+texture = ExtResource( 23 )
+hframes = 2
+
+[node name="Grass3" type="Sprite" parent="."]
+position = Vector2( 147.351, 140.767 )
+z_index = -1
+texture = ExtResource( 23 )
+
+[node name="Grass6" type="Sprite" parent="."]
+position = Vector2( 287.467, 159.788 )
+rotation = 0.00194594
+z_index = -1
+texture = ExtResource( 23 )
+hframes = 2
+frame = 1
+
+[node name="Key__move" parent="." instance=ExtResource( 26 )]
+margin_left = 192.0
+margin_top = 94.0
+margin_right = 192.0
+margin_bottom = 94.0
+
+[node name="AnimatedSprite" parent="Key__move" index="0"]
+visible = false
+
+[node name="ScreenTime" parent="Key__move" index="2"]
+wait_time = 4.0
+
+[node name="Label" parent="Key__move" index="4"]
+visible = false
+[connection signal="area_entered" from="Scene_transition" to="Scene_transition" method="_on_Scene_transition_area_entered"]
+
+[editable path="YSort/Player"]
+
+[editable path="YSort/NPC"]
+
+[editable path="YSort/Items/Item"]
+
+[editable path="YSort/Items/Cactus"]
+
+[editable path="YSort/Items/Zapper2"]
+
+[editable path="YSort/Items/Zapper3"]
+
+[editable path="YSort/Items/Item2"]
+
+[editable path="YSort/Items/Item3"]
+
+[editable path="Colissions Background/BackgroundCollision"]
+
+[editable path="Colissions Background/BackgroundCollision7"]
+
+[editable path="Colissions Background/BackgroundCollision6"]
+
+[editable path="Colissions Background/BackgroundCollision4"]
+
+[editable path="Colissions Background/BackgroundCollision5"]
+
+[editable path="Colissions Background/BackgroundCollision3"]
+
+[editable path="Colissions Background/BackgroundCollision2"]
+
+[editable path="Scene_transition"]
+
+[editable path="Days"]
+
+[editable path="Dialog_hurtbox"]
+
+[editable path="Key__move"]

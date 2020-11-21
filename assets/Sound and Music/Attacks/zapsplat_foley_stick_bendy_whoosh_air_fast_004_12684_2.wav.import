@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_foley_stick_bendy_whoosh_air_fast_004_12684_2.wav-3bae1f438343ad33a829b49475aa9d79.sample"
+
+[deps]
+
+source_file="res://assets/Sound and Music/Attacks/zapsplat_foley_stick_bendy_whoosh_air_fast_004_12684_2.wav"
+dest_files=[ "res://.import/zapsplat_foley_stick_bendy_whoosh_air_fast_004_12684_2.wav-3bae1f438343ad33a829b49475aa9d79.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

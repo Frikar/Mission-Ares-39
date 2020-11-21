@@ -1,0 +1,13 @@
+[
+    {
+        "name": "[color=#FF4900]Ajax Chief[/color]",
+        "text": "[color=#1240AB]Argos[/color], there are [color=#C60000]serious problems[/color]. We’re going to get [color=#FF4900]you out of there[/color], please hold on a few minutes while we [color=#1240AB]arrive at your coordinates[/color]. You have to go back home. "
+    },
+    {
+        "name": "[color=#1240AB]Argos[/color]",
+        "text": "I’m sorry [color=#FF4900]boss[/color], this time I won’t [color=#1240AB]ignore this[/color]. I’m [color=#CD0074]already at home[/color], I already am…"
+    },
+    {
+        "scene": "res://src/UI/Menu.tscn"
+    }
+]

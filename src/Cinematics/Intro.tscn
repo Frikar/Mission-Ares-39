@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/dialogs/Resources/Game_intro.tres" type="Resource" id=1]
+[ext_resource path="res://src/Sound/Dialogue_Music.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Cinematics/Intro.gd" type="Script" id=3]
+[ext_resource path="res://addons/dialogs/Images/background/placeholder-3.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sound and Music/Songs/loading.ogg" type="AudioStream" id=5]
+
+[node name="Intro" type="Control"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+dialog_resource = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = 1.18921
+margin_right = 321.0
+margin_bottom = 181.189
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IntroMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -6.0
+autoplay = true
+
+[node name="Dialogue_Music" parent="." instance=ExtResource( 2 )]

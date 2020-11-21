@@ -1,0 +1,186 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/UI/Title.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/Menu.gd" type="Script" id=2]
+[ext_resource path="res://assets/Fonts/DisposableDroidBB.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/Sound/WorldMusic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Sound and Music/Songs/embush.ogg" type="AudioStream" id=5]
+[ext_resource path="res://splash.png" type="Texture" id=6]
+[ext_resource path="res://assets/Fonts/DisposableDroidBB_bld.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 10
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="TextureButton" parent="."]
+margin_left = 18.4545
+margin_top = 135.558
+margin_right = 147.454
+margin_bottom = 175.558
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Quit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.454491
+margin_top = 0.55468
+margin_right = 0.454498
+margin_bottom = 0.55468
+custom_fonts/font = SubResource( 1 )
+text = "Quit Game"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="TextureButton" parent="."]
+margin_left = 17.9248
+margin_top = 51.0514
+margin_right = 159.925
+margin_bottom = 91.0517
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Start"]
+anchor_top = 0.201
+anchor_right = 1.0
+anchor_bottom = 1.201
+margin_top = -7.98532
+margin_bottom = -7.98532
+custom_fonts/font = SubResource( 2 )
+text = "Start Game"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fullscreen" type="TextureButton" parent="."]
+margin_left = 18.4545
+margin_top = 94.5577
+margin_right = 160.454
+margin_bottom = 134.558
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Fullscreen"]
+anchor_top = 0.201
+anchor_right = 1.0
+anchor_bottom = 1.201
+margin_top = -7.98532
+margin_bottom = -7.98532
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Fullscreen"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tittle" type="Label" parent="."]
+margin_left = 18.4545
+margin_top = 12.819
+margin_right = 219.454
+margin_bottom = 55.819
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.435294, 0.454902, 1, 1 )
+text = "Mission ARES-39"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldMusic" parent="." instance=ExtResource( 4 )]
+stream = ExtResource( 5 )
+volume_db = -9.0
+autoplay = true
+
+[node name="Logo" type="TextureRect" parent="."]
+margin_left = 249.104
+margin_top = 134.045
+margin_right = 1049.1
+margin_bottom = 590.045
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thanks" type="Label" parent="."]
+margin_left = 144.0
+margin_top = 81.7937
+margin_right = 315.0
+margin_bottom = 124.794
+custom_fonts/font = SubResource( 4 )
+text = "THANKS FOR PLAYING!!"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vero" type="Label" parent="."]
+margin_left = 161.777
+margin_top = 143.871
+margin_right = 269.777
+margin_bottom = 178.871
+custom_fonts/font = SubResource( 5 )
+text = "Translation by: 
+Veronica Linares"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

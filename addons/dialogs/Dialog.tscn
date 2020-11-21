@@ -1,0 +1,199 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/dialogs/Images/dialog-background.png" type="Texture" id=1]
+[ext_resource path="res://assets/Keys/Not used/L-Key.png" type="Texture" id=2]
+[ext_resource path="res://addons/dialogs/dialog_node.gd" type="Script" id=3]
+[ext_resource path="res://addons/dialogs/Theme.tres" type="Theme" id=4]
+[ext_resource path="res://addons/dialogs/Resources/Characters/Iteb.tres" type="Resource" id=5]
+[ext_resource path="res://addons/dialogs/Resources/Characters/Zas.tres" type="Resource" id=6]
+[ext_resource path="res://addons/dialogs/Resources/Characters/Kubuk.tres" type="Resource" id=7]
+[ext_resource path="res://assets/Fonts/DisposableDroidBB_bld.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://src/Sound/Dialogue_Music.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Sound and Music/Effects/confirm_style_5_001.wav" type="AudioStream" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "IDLE"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 15
+font_data = ExtResource( 8 )
+
+[node name="DialogNode" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.272724
+margin_top = 0.914206
+margin_right = -0.272736
+margin_bottom = 0.9142
+theme = ExtResource( 4 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+dialog_characters = [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ) ]
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.371395
+margin_top = 1.11413
+margin_right = 0.371307
+margin_bottom = 1.11414
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portraits" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextBubble" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.926
+anchor_right = 0.5
+anchor_bottom = 0.926
+margin_left = -109.0
+margin_top = -63.68
+margin_right = 123.0
+margin_bottom = -6.67999
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="TextBubble"]
+self_modulate = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextBubble"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+bbcode_enabled = true
+bbcode_text = "Placeholder text for testing and formatting."
+text = "Placeholder text for testing and formatting."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="TextBubble"]
+
+[node name="NextIndicator" type="Sprite" parent="TextBubble"]
+position = Vector2( 211, 37 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextBubble/NextIndicator"]
+autoplay = "IDLE"
+anims/IDLE = SubResource( 1 )
+
+[node name="NameLabel" type="RichTextLabel" parent="TextBubble"]
+margin_left = -2.05199
+margin_top = -18.6819
+margin_right = 364.948
+margin_bottom = 18.3181
+custom_fonts/normal_font = SubResource( 2 )
+custom_constants/shadow_as_outline = 10
+bbcode_enabled = true
+bbcode_text = "Name Here"
+text = "Name Here"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -19.9999
+margin_right = 20.0
+margin_bottom = 19.9999
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextInputDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -57.0
+margin_right = 192.0
+margin_bottom = 57.0
+popup_exclusive = true
+window_title = "¡Alerta!"
+dialog_hide_on_ok = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="TextInputDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 376.0
+margin_bottom = 78.0
+
+[node name="FX" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="FadeInNode" type="ColorRect" parent="FX"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="FX/FadeInNode"]
+
+[node name="Dialog_next" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Dialogue_Music" parent="." instance=ExtResource( 9 )]
+[connection signal="tween_completed" from="TextBubble/Tween" to="." method="_on_Tween_tween_completed"]

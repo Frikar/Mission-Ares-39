@@ -1,0 +1,73 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/NPC/Jappy/idle.png" type="Texture" id=1]
+[ext_resource path="res://src/Overlap/Hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/NPC/NPC.gd" type="Script" id=3]
+[ext_resource path="res://assets/Shadows/SmallShadow.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sound and Music/Effects/confirm_style_5_001.wav" type="AudioStream" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 5.33315
+height = 3.67993
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 23.5259
+
+[node name="NPC" type="KinematicBody2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 1, 1.19843 )
+texture = ExtResource( 4 )
+offset = Vector2( -2.5, 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.10511, 0.723988 )
+frames = SubResource( 5 )
+animation = "Animate"
+offset = Vector2( 0, -12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.5874, -4.16693 )
+shape = SubResource( 6 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -1.5874, -6.94488 )
+shape = SubResource( 7 )
+
+[node name="Dialog_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_Hurtbox_area_exited"]
+
+[editable path="Hurtbox"]

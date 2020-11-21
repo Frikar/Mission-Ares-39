@@ -1,0 +1,297 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Overlap/BackgroundCollision.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/World/Cave/background.png" type="Texture" id=3]
+[ext_resource path="res://assets/World/Cave/back-walls.png" type="Texture" id=4]
+[ext_resource path="res://src/Items/Machine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/Key_move.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Keys/W-Key.png" type="Texture" id=7]
+[ext_resource path="res://assets/Keys/S-Key.png" type="Texture" id=8]
+[ext_resource path="res://assets/Keys/Not used/L-Key.png" type="Texture" id=9]
+[ext_resource path="res://src/Effects/Scene_transition.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/UI/Pause Menu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/Sound and Music/Songs/Undergrounds.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/Items/World1/Box2.png" type="Texture" id=13]
+[ext_resource path="res://src/Items/Box.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/Items/World1/Box3.png" type="Texture" id=15]
+[ext_resource path="res://assets/Keys/K-Key.png" type="Texture" id=16]
+[ext_resource path="res://assets/Sound and Music/Effects/Concrete 1.wav" type="AudioStream" id=17]
+[ext_resource path="res://src/Overlap/Dialog_hurtbox.tscn" type="PackedScene" id=18]
+[ext_resource path="res://addons/dialogs/Resources/World1.tres" type="Resource" id=19]
+[ext_resource path="res://assets/Keys/D-Key.png" type="Texture" id=20]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[sub_resource type="SegmentShape2D" id=3]
+a = Vector2( 127.893, 39.2434 )
+b = Vector2( -74.25, 34.4453 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 66.9073 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 20 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 16 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 7 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 13.4202, 39.9946 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 16.4222, 41.1857 )
+
+[node name="World1" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 15.5564, 148.802 )
+
+[node name="AnimationTree" parent="YSort/Player" index="2"]
+parameters/playback = SubResource( 2 )
+
+[node name="Walking_sound" parent="YSort/Player" index="7"]
+stream = ExtResource( 17 )
+
+[node name="back-walls" type="Sprite" parent="YSort"]
+position = Vector2( 192, 64 )
+scale = Vector2( 1, 0.862507 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Background" type="Sprite" parent="YSort"]
+position = Vector2( 160, 64 )
+scale = Vector2( 1.66646, 0.637073 )
+z_index = -3
+texture = ExtResource( 3 )
+
+[node name="Box" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 202.825, 177.028 )
+
+[node name="Box2" parent="YSort" instance=ExtResource( 14 )]
+self_modulate = Color( 0.105882, 0.0901961, 0.0901961, 1 )
+position = Vector2( 71.3958, 116.913 )
+
+[node name="Sprite" parent="YSort/Box2" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Box3" parent="YSort" instance=ExtResource( 14 )]
+self_modulate = Color( 0.105882, 0.0901961, 0.0901961, 1 )
+position = Vector2( 216.565, 114.786 )
+
+[node name="Sprite" parent="YSort/Box3" index="0"]
+texture = ExtResource( 15 )
+
+[node name="Items" type="YSort" parent="YSort"]
+
+[node name="Machine-Sprite" parent="YSort/Items" instance=ExtResource( 5 )]
+position = Vector2( 16.3783, 161.44 )
+
+[node name="BackgroundCollision" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 192, 72.0407 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/BackgroundCollision"]
+shape = SubResource( 3 )
+
+[node name="BackgroundCollision3" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 192, 72.0407 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/BackgroundCollision3"]
+position = Vector2( -202.055, 83.3874 )
+shape = SubResource( 4 )
+
+[node name="BackgroundCollision2" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 123.827, 211.383 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/BackgroundCollision2"]
+shape = SubResource( 3 )
+
+[node name="Controls" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Key__move" parent="Controls" instance=ExtResource( 6 )]
+margin_left = 30.8958
+margin_top = 77.9681
+margin_right = 30.8958
+margin_bottom = 77.9681
+
+[node name="AnimatedSprite2" parent="Controls/Key__move" index="1"]
+frames = SubResource( 7 )
+
+[node name="Label" parent="Controls/Key__move" index="4"]
+margin_left = -22.8369
+margin_top = -17.5612
+margin_right = 47.1631
+margin_bottom = -1.56123
+text = "Left-Right"
+
+[node name="Key__move3" parent="Controls" instance=ExtResource( 6 )]
+margin_left = 211.062
+margin_top = 77.9681
+margin_right = 211.062
+margin_bottom = 77.9681
+
+[node name="AnimatedSprite" parent="Controls/Key__move3" index="0"]
+visible = false
+frames = SubResource( 10 )
+
+[node name="AnimatedSprite2" parent="Controls/Key__move3" index="1"]
+position = Vector2( -19.0654, -4.3662 )
+frames = SubResource( 13 )
+
+[node name="Label" parent="Controls/Key__move3" index="4"]
+margin_left = -44.3168
+margin_top = -17.5612
+margin_right = 62.6832
+margin_bottom = -1.5612
+text = "Attack"
+
+[node name="Key__move2" parent="Controls" instance=ExtResource( 6 )]
+margin_left = 123.827
+margin_top = 77.9681
+margin_right = 123.827
+margin_bottom = 77.9681
+
+[node name="AnimatedSprite" parent="Controls/Key__move2" index="0"]
+frames = SubResource( 16 )
+
+[node name="AnimatedSprite2" parent="Controls/Key__move2" index="1"]
+frames = SubResource( 19 )
+
+[node name="Label" parent="Controls/Key__move2" index="4"]
+margin_left = -22.8369
+margin_top = -17.5612
+margin_right = 47.1631
+margin_bottom = -1.56123
+text = "Up-Down"
+
+[node name="WorldMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+volume_db = -6.0
+autoplay = true
+
+[node name="Scene_transition" parent="." instance=ExtResource( 10 )]
+position = Vector2( 325.531, 141.668 )
+scene = "res://src/World/World2.tscn"
+
+[node name="CollisionShape2D" parent="Scene_transition" index="0"]
+position = Vector2( 8.18268, 0.851815 )
+shape = SubResource( 20 )
+
+[node name="Dialog_hurtbox" parent="." instance=ExtResource( 18 )]
+position = Vector2( 216.565, 141.668 )
+label_position = Vector2( 184.051, 120 )
+dialog_resource = ExtResource( 19 )
+
+[node name="CollisionShape2D" parent="Dialog_hurtbox" index="0"]
+shape = SubResource( 21 )
+
+[node name="Pause Menu" parent="." instance=ExtResource( 11 )]
+margin_left = 0.0
+margin_top = -5.0
+margin_right = 324.0
+margin_bottom = 178.0
+[connection signal="area_entered" from="Scene_transition" to="Scene_transition" method="_on_Scene_transition_area_entered"]
+
+[editable path="YSort/Player"]
+
+[editable path="YSort/Box"]
+
+[editable path="YSort/Box2"]
+
+[editable path="YSort/Box3"]
+
+[editable path="Controls/Key__move"]
+
+[editable path="Controls/Key__move3"]
+
+[editable path="Controls/Key__move2"]
+
+[editable path="Scene_transition"]
+
+[editable path="Dialog_hurtbox"]

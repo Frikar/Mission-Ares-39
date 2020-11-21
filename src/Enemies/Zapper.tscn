@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Shadows/SmallShadow.png" type="Texture" id=1]
+[ext_resource path="res://assets/Enemies/Zapper/wake.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.91292
+height = 7.40594
+
+[node name="Zapper" type="KinematicBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -16, -40 )
+vframes = 5
+hframes = 2
+
+[node name="Shadow" type="Sprite" parent="."]
+z_index = -1
+texture = ExtResource( 1 )
+offset = Vector2( -0.3, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -6.94488 )
+shape = SubResource( 1 )

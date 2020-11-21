@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/embush.ogg-910c9a223a0b4cfded68adbecf849e37.oggstr"
+
+[deps]
+
+source_file="res://assets/Sound and Music/Songs/embush.ogg"
+dest_files=[ "res://.import/embush.ogg-910c9a223a0b4cfded68adbecf849e37.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

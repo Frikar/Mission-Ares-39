@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/Items/World2/House1.png" type="Texture" id=1]
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12.6161, 7.06729 )
+
+[node name="House1" type="StaticBody2D"]
+scale = Vector2( 1.5, 1.5 )
+collision_mask = 0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -15 )
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2( 12.8995, -10.0871 )
+shape = SubResource( 1 )
